@@ -37,6 +37,9 @@ export const usersSlice = createSlice({
     unsetUser: (state) => {
       state.user = null;
     },
+    unsetAccessToken: (state) => {
+      state.accessToken = null;
+    },
     setAccessToken: (state, { payload }) => {
       state.accessToken = payload;
     },
@@ -88,4 +91,4 @@ export const usersSlice = createSlice({
 });
 
 export const usersReducer = usersSlice.reducer;
-export const { unsetUser, setAccessToken } = usersSlice.actions;
+export const { unsetUser, setAccessToken, unsetAccessToken } = usersSlice.actions;

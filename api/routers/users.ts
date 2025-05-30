@@ -1,11 +1,7 @@
 import express from "express";
 import { OAuth2Client } from "google-auth-library";
 import config from "../config";
-import User, {
-  generateAccessToken,
-  generateRefreshToken,
-  JWT_REFRESH_SECRET,
-} from "../models/User";
+import User, { generateAccessToken, generateRefreshToken, JWT_REFRESH_SECRET, } from "../models/User";
 import { Error } from "mongoose";
 import { userImage } from "../middleware/multer";
 import jwt from "jsonwebtoken";
@@ -168,6 +164,8 @@ usersRouter.post("/sessions", async (req, res, _next) => {
     _id: user._id,
     email: user.email,
     role: user.role,
+    displayName: user.displayName,
+    avatar: user.avatar,
   };
 
   res.send({

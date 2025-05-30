@@ -42,7 +42,9 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
         <CardHeader
           avatar={
             <Avatar sx={{ backgroundColor: "primary.main" }}>
-              {cocktail.user.avatar}
+              {cocktail.user.avatar
+                ? cocktail.user.avatar
+                : cocktail.user.email}
             </Avatar>
           }
           title={
@@ -101,6 +103,7 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
               </ListItem>
             ))}
           </List>
+          {cocktail.isPublished.toString()}
         </CardContent>
       </CardActionArea>
 

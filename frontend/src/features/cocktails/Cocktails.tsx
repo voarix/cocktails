@@ -1,5 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import { selectCocktails, selectFetchError, selectFetchLoading, } from "./cocktailsSlice.ts";
+import {
+  selectCocktails,
+  selectFetchError,
+  selectFetchLoading,
+} from "./cocktailsSlice.ts";
 import { useEffect } from "react";
 import { fetchAllCocktails } from "./cocktailsThunks.ts";
 import Spinner from "../../components/UI/Spinner/Spinner.tsx";

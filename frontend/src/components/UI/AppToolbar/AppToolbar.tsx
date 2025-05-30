@@ -24,7 +24,7 @@ const AppToolbar = () => {
   const user = useAppSelector(selectUser);
 
   return (
-    <AppBar position="sticky" sx={{ mb: 2 }}>
+    <AppBar position="sticky" color="secondary" sx={{ mb: 2 }}>
       <Toolbar>
         <Container maxWidth="xl">
           <Grid

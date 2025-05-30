@@ -8,6 +8,38 @@ export interface User {
   avatar?: string;
 }
 
+export interface Ingredient {
+  name: string;
+  amount: string;
+}
+
+export interface Rating {
+  user: string;
+  stars: number;
+}
+
+export interface ICocktail {
+  _id: string;
+  name: string;
+  user: {
+    _id: string;
+    email: string;
+    avatar: string;
+  };
+  image: string;
+  recipe: string;
+  isPublished: boolean;
+  ingredients: Ingredient[];
+  rating: Rating[];
+}
+
+export interface CocktailMutation {
+  name: string;
+  image?: File | null;
+  recipe: string;
+  ingredients: Ingredient[];
+}
+
 export interface ValidationError {
   errors: {
     [key: string]: {

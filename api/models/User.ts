@@ -23,11 +23,11 @@ export const JWT_REFRESH_SECRET =
   process.env.JWT_REFRESH_SECRET || "default_fallback_secret";
 
 export const generateAccessToken = (user: HydratedDocument<UserFields>) => {
-  return jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: "1m" }); // не забудь поменять!!!!!!!!!!!!!!!!!!!
+  return jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: "5m" });
 };
 
 export const generateRefreshToken = (user: HydratedDocument<UserFields>) => {
-  return jwt.sign({ _id: user._id }, JWT_REFRESH_SECRET, { expiresIn: "2m" }); // здесь тооже
+  return jwt.sign({ _id: user._id }, JWT_REFRESH_SECRET, { expiresIn: "2d" });
 };
 
 type UserModel = Model<UserFields, {}, UserMethods>;

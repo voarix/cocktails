@@ -9,10 +9,15 @@ export interface UserFields {
   avatar: string;
 }
 
+export interface Ingredient {
+  name: string;
+  amount: string;
+}
+
 export interface CocktailMutation {
   user: string;
   name: string;
   image: string | null;
   recipe: string | null;
-  ingredients: string[];
+  ingredients: Ingredient[];
 }

@@ -38,7 +38,7 @@ cocktailsRouter.get("/", async (req, res, next) => {
       } catch {
         const cocktails = await Cocktail.find({ isPublished: true }).populate(
           "user",
-          "email",
+          "email avatar",
         );
         res.send(cocktails);
         return;
@@ -59,7 +59,7 @@ cocktailsRouter.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
 
-    const cocktail = await Cocktail.findById(id).populate("user", "email");
+    const cocktail = await Cocktail.findById(id).populate("user", "email avatar");
     if (!cocktail) {
       res.status(404).send({ error: "Cocktail not found" });
       return;

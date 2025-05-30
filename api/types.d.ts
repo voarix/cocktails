@@ -8,3 +8,11 @@ export interface UserFields {
   googleID?: string;
   avatar: string;
 }
+
+export interface CocktailMutation {
+  user: string;
+  name: string;
+  image: string | null;
+  recipe: string | null;
+  ingredients: string[];
+}

@@ -19,17 +19,18 @@ cocktailsRouter.get("/", async (req, res, next) => {
     if (token && authHeader) {
       try {
         const decoded = jwt.verify(token, JWT_SECRET) as { _id: string };
-        console.log(decoded);
         user = await User.findById(decoded._id);
-        console.log(user);
+
         if (user) {
           const isPublishedCocktails = await Cocktail.find({
             isPublished: true,
           });
+
           const cocktails = await Cocktail.find({
             user: user._id,
             isPublished: false,
           });
+
           cocktails.push(...isPublishedCocktails);
           res.send(cocktails);
           return;
@@ -57,10 +58,8 @@ cocktailsRouter.get("/", async (req, res, next) => {
 cocktailsRouter.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
-    console.log(id);
 
     const cocktail = await Cocktail.findById(id).populate("user", "email");
-
     if (!cocktail) {
       res.status(404).send({ error: "Cocktail not found" });
       return;
@@ -95,7 +94,7 @@ cocktailsRouter.post(
         name: req.body.name,
         image: req.file ? "cocktails/" + req.file.filename : "/default.jpg",
         recipe: req.body.recipe,
-        ingredients: ingredients,
+        ingredients,
       };
 
       const cocktail = new Cocktail(newCocktail);

@@ -5,6 +5,7 @@ import config from "./config";
 import cookieParser from "cookie-parser";
 import usersRouter from "./routers/users";
 import cocktailsRouter from "./routers/cocktails";
+import adminRouter from "./routers/admin";
 
 const app = express();
 const port = 8000;
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static("public"));
 app.use(express.json());
 
+app.use("/admin", adminRouter);
 app.use("/users", usersRouter);
 app.use("/cocktails", cocktailsRouter);
 

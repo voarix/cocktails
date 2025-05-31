@@ -11,9 +11,10 @@ import ProtectedRoute from "./components/UI/ProtectedRoute.tsx";
 import { useAppSelector } from "./app/hooks.ts";
 import { selectUser } from "./features/users/usersSlice.ts";
 import MyCocktails from "./features/cocktails/MyCocktails.tsx";
+import NewCocktail from "./features/cocktails/NewCoktail.tsx";
 
 const App = () => {
-  const user= useAppSelector(selectUser);
+  const user = useAppSelector(selectUser);
 
   return (
     <>
@@ -35,7 +36,16 @@ const App = () => {
               path="/my-cocktails"
               element={
                 <ProtectedRoute isAllowed={Boolean(user)}>
-                  <MyCocktails/>
+                  <MyCocktails />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/add-cocktail"
+              element={
+                <ProtectedRoute isAllowed={Boolean(user)}>
+                  <NewCocktail />
                 </ProtectedRoute>
               }
             />

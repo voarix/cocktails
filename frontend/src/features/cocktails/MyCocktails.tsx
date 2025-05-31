@@ -16,14 +16,10 @@ const MyCocktails = () => {
 
   return (
     <Grid container spacing={2}>
-      <Typography variant="h4" sx={{mb: 5}}>
+      <Typography variant="h4" sx={{ mb: 5 }}>
         My Cocktails
       </Typography>
-      {loading ? (
-        <CircularProgress/>
-      ) : (
-        <CocktailList cocktails={cocktails}/>
-      )}
+      {loading ? <CircularProgress /> : <CocktailList cocktails={cocktails} />}
     </Grid>
   );
 };

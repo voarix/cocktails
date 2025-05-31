@@ -26,8 +26,11 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
   return (
     <Card
       sx={{
-        maxWidth: 345,
-        margin: 2,
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         borderRadius: 2,
         boxShadow: 2,
         transition: "transform 0.3s, box-shadow 0.3s",
@@ -38,13 +41,11 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
         },
       }}
     >
-      <CardActionArea component={Link} to={"/cocktails/" + cocktail._id}>
+      <CardActionArea component={Link} to={"/" + cocktail._id}>
         <CardHeader
           avatar={
             <Avatar sx={{ backgroundColor: "primary.main" }}>
-              {cocktail.user.avatar
-                ? cocktail.user.avatar
-                : cocktail.user.email}
+              {cocktail.user.avatar ? cocktail.user.avatar : null}
             </Avatar>
           }
           title={
@@ -103,7 +104,11 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
               </ListItem>
             ))}
           </List>
-          {cocktail.isPublished.toString()}
+          {!cocktail.isPublished && (
+            <Typography variant="body2" color="textSecondary">
+              under consideration by the administration
+            </Typography>
+          )}
         </CardContent>
       </CardActionArea>
 
@@ -113,7 +118,7 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
           variant="outlined"
           color="primary"
           component={Link}
-          to={"/cocktails/" + cocktail._id}
+          to={"/" + cocktail._id}
           sx={{
             textTransform: "none",
             borderRadius: 2,

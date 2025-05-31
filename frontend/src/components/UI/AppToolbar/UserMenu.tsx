@@ -4,7 +4,10 @@ import type { User } from "../../../types";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../app/hooks.ts";
 import { logout } from "../../../features/users/usersThunks.ts";
-import { unsetAccessToken, unsetUser } from "../../../features/users/usersSlice.ts";
+import {
+  unsetAccessToken,
+  unsetUser,
+} from "../../../features/users/usersSlice.ts";
 import { toast } from "react-toastify";
 import { apiUrl } from "../../../globalConstants.ts";
 import { fetchAllCocktails } from "../../../features/cocktails/cocktailsThunks.ts";

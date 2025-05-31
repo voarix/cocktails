@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./features/users/Register.tsx";
 import Login from "./features/users/Login.tsx";
 import Cocktails from "./features/cocktails/Cocktails.tsx";
+import CocktailFullView from "./features/cocktails/CocktailFullView.tsx";
 
 const App = () => {
   return (
@@ -21,6 +22,8 @@ const App = () => {
             <Route path="/" element={<Cocktails />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+
+            <Route path="/:id" element={<CocktailFullView />} />
 
             <Route
               path="*"

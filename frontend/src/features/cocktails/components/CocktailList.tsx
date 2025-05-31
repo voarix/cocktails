@@ -9,9 +9,9 @@ interface Props {
 
 const CocktailList: React.FC<Props> = ({ cocktails }) => {
   return (
-    <Grid container sx={{ mt: 5 }}>
+    <Grid container spacing={3} justifyContent="center" sx={{ mt: 5 }}>
       {cocktails.map((cocktailOne) => (
-        <Grid key={cocktailOne._id}  size={{ xs: 3 }}>
+        <Grid key={cocktailOne._id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
           <CocktailItem cocktail={cocktailOne} />
         </Grid>
       ))}

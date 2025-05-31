@@ -91,4 +91,5 @@ export const usersSlice = createSlice({
 });
 
 export const usersReducer = usersSlice.reducer;
-export const { unsetUser, setAccessToken, unsetAccessToken } = usersSlice.actions;
+export const { unsetUser, setAccessToken, unsetAccessToken } =
+  usersSlice.actions;

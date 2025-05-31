@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import { usersReducer } from "../features/users/usersSlice.ts";
 import { cocktailsReducer } from "../features/cocktails/cocktailsSlice.ts";
+import { adminCocktailsReducer } from "../features/admin/cocktails/cocktailsAdminSlice.ts";
 
 const usersPersistConfig = {
   key: "store:users",
@@ -22,6 +23,7 @@ const usersPersistConfig = {
 const rootReducer = combineReducers({
   cocktails: cocktailsReducer,
   users: persistReducer(usersPersistConfig, usersReducer),
+  adminCocktails: adminCocktailsReducer,
 });
 
 export const store = configureStore({

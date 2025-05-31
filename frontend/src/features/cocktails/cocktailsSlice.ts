@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 import type { GlobalError, ICocktail, ValidationError } from "../../types";
-import {
-  createCocktail,
-  fetchAllCocktails,
-  fetchCocktailById,
-} from "./cocktailsThunks.ts";
+import { createCocktail, fetchAllCocktails, fetchCocktailById, fetchMyCocktails, } from "./cocktailsThunks.ts";
 
 interface CocktailsState {
   items: ICocktail[];
@@ -80,6 +76,20 @@ const cocktailsSlice = createSlice({
         state.fetchOneLoading = false;
         state.fetchOneError = error || null;
       })
+
+      .addCase(fetchMyCocktails.pending, (state) => {
+        state.fetchLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchMyCocktails.fulfilled, (state, { payload }) => {
+        state.fetchLoading = false;
+        state.items = payload;
+      })
+      .addCase(fetchMyCocktails.rejected, (state, { payload: error }) => {
+        state.fetchLoading = false;
+        state.error = error || null;
+      })
+
 
       .addCase(createCocktail.pending, (state) => {
         state.createLoading = true;

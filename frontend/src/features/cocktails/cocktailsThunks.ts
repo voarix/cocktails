@@ -1,12 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosApi from "../../axiosApi.ts";
 import { isAxiosError } from "axios";
-import type {
-  CocktailMutation,
-  GlobalError,
-  ICocktail,
-  ValidationError,
-} from "../../types";
+import type { CocktailMutation, GlobalError, ICocktail, ValidationError, } from "../../types";
 
 export const fetchAllCocktails = createAsyncThunk<
   ICocktail[],
@@ -52,10 +47,28 @@ export const fetchCocktailById = createAsyncThunk<
   }
 });
 
+export const fetchMyCocktails = createAsyncThunk<
+  ICocktail[],
+  void,
+  { rejectValue: ValidationError }
+>("cocktails/fetchMyCocktails", async (_, { rejectWithValue }) => {
+  try {
+    const response = await axiosApi.get<ICocktail[]>("/cocktails/my", {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 400) {
+      return rejectWithValue(error.response.data);
+    }
+    throw error;
+  }
+});
+
 export const createCocktail = createAsyncThunk<
   ICocktail,
   CocktailMutation,
-  { rejectValue: ValidationError | GlobalError }
+  { rejectValue: ValidationError | GlobalError}
 >("cocktails/createCocktail", async (cocktailToAdd, { rejectWithValue }) => {
   try {
     const formData = new FormData();

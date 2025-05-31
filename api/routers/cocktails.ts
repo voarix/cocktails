@@ -55,6 +55,18 @@ cocktailsRouter.get("/", async (req, res, next) => {
   }
 });
 
+cocktailsRouter.get("/my", auth, async (req, res, next) => {
+  try {
+    const user = (req as RequestWithUser).user;
+    console.log(user);
+
+    const cocktails = await Cocktail.find({ user: user._id }).populate("user", "email avatar");
+    res.send(cocktails);
+  } catch (e) {
+    next(e);
+  }
+});
+
 cocktailsRouter.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;

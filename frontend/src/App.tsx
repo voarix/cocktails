@@ -7,8 +7,14 @@ import Register from "./features/users/Register.tsx";
 import Login from "./features/users/Login.tsx";
 import Cocktails from "./features/cocktails/Cocktails.tsx";
 import CocktailFullView from "./features/cocktails/CocktailFullView.tsx";
+import ProtectedRoute from "./components/UI/ProtectedRoute.tsx";
+import { useAppSelector } from "./app/hooks.ts";
+import { selectUser } from "./features/users/usersSlice.ts";
+import MyCocktails from "./features/cocktails/MyCocktails.tsx";
 
 const App = () => {
+  const user= useAppSelector(selectUser);
+
   return (
     <>
       <CssBaseline />
@@ -24,6 +30,15 @@ const App = () => {
             <Route path="/login" element={<Login />} />
 
             <Route path="/:id" element={<CocktailFullView />} />
+
+            <Route
+              path="/my-cocktails"
+              element={
+                <ProtectedRoute isAllowed={Boolean(user)}>
+                  <MyCocktails/>
+                </ProtectedRoute>
+              }
+            />
 
             <Route
               path="*"
